@@ -1,4 +1,12 @@
 # Put some miscellaneous rules here
+#
+# Build system colors
+#
+# PFX: Prefix "target C++:" in yellow
+# INS: Module "Install:" output color (cyan for ics)
+ ifneq ($(BUILD_WITH_COLORS),0)
+    include $(TOP_DIR)build/core/colors.mk
+endif
 
 # HACK: clear LOCAL_PATH from including last build target before calling
 # intermedites-dir-for
@@ -2960,8 +2968,20 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) \
 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
-.PHONY: otapackage
+.PHONY: otapackage aosdp
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
+aosdp: otapackage
+	@echo -e ${CL_BLU}""${CL_BLU}
+	@echo -e ${CL_BLU}""${CL_BLU}
+        @echo -e ${CL_BLU}"   ▄████████  ▄██████▄     ▄████████ ████████▄     ▄███████▄ "${CL_BLU}
+        @echo -e ${CL_BLU}"  ███    ███ ███    ███   ███    ███ ███   ▀███   ███    ███ "${CL_BLU}
+        @echo -e ${CL_BLU}"  ███    ███ ███    ███   ███    █▀  ███    ███   ███    ███ "${CL_BLU}
+        @echo -e ${CL_BLU}"  ███    ███ ███    ███   ███        ███    ███   ███    ███ "${CL_BLU}
+        @echo -e ${CL_BLU}"▀███████████ ███    ███ ▀███████████ ███    ███ ▀█████████▀  "${CL_BLU}
+        @echo -e ${CL_BLU}"  ███    ███ ███    ███          ███ ███    ███   ███        "${CL_BLU}
+        @echo -e ${CL_BLU}"  ███    ███ ███    ███    ▄█    ███ ███   ▄███   ███        "${CL_BLU}
+        @echo -e ${CL_BLU}"  ███    █▀   ▀██████▀   ▄████████▀  ████████▀   ▄████▀      "${CL_BLU}
+        @echo -e ${CL_YLE}"----------------------------------------A Team AOSDP Project "${CL_YLE}
 
 endif    # build_ota_package
 
