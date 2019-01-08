@@ -557,30 +557,21 @@ function add_lunch_combo()
     LUNCH_MENU_CHOICES=(${LUNCH_MENU_CHOICES[@]} $new_combo)
 }
 
+# add the default one here
+add_lunch_combo aosp_arm-eng
+add_lunch_combo aosp_arm64-eng
+add_lunch_combo aosp_mips-eng
+add_lunch_combo aosp_mips64-eng
+add_lunch_combo aosp_x86-eng
+add_lunch_combo aosp_x86_64-eng
+
 function print_lunch_menu()
 {
     local uname=$(uname)
     echo
-
-    echo ""
-    tput setaf 1;
-    tput bold;
-    echo "   ▄████████  ▄██████▄     ▄████████ ████████▄     ▄███████▄ "
-    echo "  ███    ███ ███    ███   ███    ███ ███   ▀███   ███    ███ "
-    echo "  ███    ███ ███    ███   ███    █▀  ███    ███   ███    ███ "
-    echo "  ███    ███ ███    ███   ███        ███    ███   ███    ███ "
-    echo "▀███████████ ███    ███ ▀███████████ ███    ███ ▀█████████▀  "
-    echo "  ███    ███ ███    ███          ███ ███    ███   ███        "
-    echo "  ███    ███ ███    ███    ▄█    ███ ███   ▄███   ███        "
-    echo "  ███    █▀   ▀██████▀   ▄████████▀  ████████▀   ▄████▀      "
-    tput sgr0;
-    echo ""
-    echo "                      Welcome to the device menu                      "
-    echo ""
-    tput bold;
-    echo "     Below are all the devices currently available to be compiled     "
-    tput sgr0;
-    echo ""
+    echo "You're building on" $uname
+    echo
+    echo "Lunch menu... pick a combo:"
 
     local i=1
     local choice
